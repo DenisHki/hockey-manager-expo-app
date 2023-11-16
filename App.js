@@ -1,20 +1,105 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GlobalStyles } from "./constants/styles";
+
+import MainScreen from "./screens/MainScreen";
+import Players from "./screens/Players";
+import Events from "./screens/Events";
+import Icon from "react-native-vector-icons/Ionicons";
+
+const BottomTabs = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const MainStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="MainStackScreen"
+      component={MainScreen}
+      options={{
+        title: "Home",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
+      }}
+    />
+  </Stack.Navigator>
+);
+
+const PlayersStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="PlayersStackScreen"
+      component={Players}
+      options={{
+        title: "Players",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
+      }}
+    />
+  </Stack.Navigator>
+);
+
+const EventsStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="EventsStackScreen"
+      component={Events}
+      options={{
+        title: "Events",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
+      }}
+    />
+  </Stack.Navigator>
+);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <BottomTabs.Navigator
+        initialRouteName="MainScreen"
+        activeColor={GlobalStyles.colors.orange}
+        inactiveColor={GlobalStyles.colors.white}
+        barStyle={{ backgroundColor: GlobalStyles.colors.darkblue }}
+        shifting={true}
+      >
+        <BottomTabs.Screen
+          name="MainScreen"
+          component={MainStack}
+          options={{
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color }) => (
+              <Icon name="home" color={color} size={26} />
+            ),
+          }}
+        />
+        <BottomTabs.Screen
+          name="Rooster"
+          component={PlayersStack}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="people" color={color} size={26} />
+            ),
+          }}
+        />
+        <BottomTabs.Screen
+          name="Events"
+          component={EventsStack}
+          options={{
+            tabBarLabel: "Events",
+            tabBarIcon: ({ color }) => (
+              <Icon name="calendar" color={color} size={26} />
+            ),
+          }}
+        />
+      </BottomTabs.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
