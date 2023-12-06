@@ -1,29 +1,34 @@
+// AddEventForm.js
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { addEvent } from "../services/firebaseService";
 
-const AddEventForm = ({ onAddEvent }) => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [location, setLocation] = useState("");
+const AddEventForm = () => {
+  const [eventData, setEventData] = useState({
+    title: "",
+    category: "",
+    date: "",
+    time: "",
+    location: "",
+  });
 
-  const handleAddEvent = () => {
-    const newEvent = {
-      title,
-      category,
-      date,
-      time,
-      location,
-    };
+  const handleInputChange = (field, value) => {
+    setEventData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
 
-    onAddEvent(newEvent);
+  const handleAddEvent = async () => {
+    await addEvent(eventData);
     // Clear the input fields after adding an event
-    setTitle("");
-    setCategory("");
-    setDate("");
-    setTime("");
-    setLocation("");
+    setEventData({
+      title: "",
+      category: "",
+      date: "",
+      time: "",
+      location: "",
+    });
   };
 
   return (
@@ -32,32 +37,32 @@ const AddEventForm = ({ onAddEvent }) => {
       <TextInput
         style={styles.input}
         placeholder="Title"
-        value={title}
-        onChangeText={(text) => setTitle(text)}
+        value={eventData.title}
+        onChangeText={(text) => handleInputChange("title", text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Category"
-        value={category}
-        onChangeText={(text) => setCategory(text)}
+        value={eventData.category}
+        onChangeText={(text) => handleInputChange("category", text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Date"
-        value={date}
-        onChangeText={(text) => setDate(text)}
+        value={eventData.date}
+        onChangeText={(text) => handleInputChange("date", text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Time"
-        value={time}
-        onChangeText={(text) => setTime(text)}
+        value={eventData.time}
+        onChangeText={(text) => handleInputChange("time", text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Location"
-        value={location}
-        onChangeText={(text) => setLocation(text)}
+        value={eventData.location}
+        onChangeText={(text) => handleInputChange("location", text)}
       />
       <Button title="Add Event" onPress={handleAddEvent} />
     </View>

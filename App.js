@@ -5,11 +5,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GlobalStyles } from "./constants/styles";
 
 import MainScreen from "./screens/MainScreen";
-import Players from "./screens/Players";
+import Players from "./components/Players";
 import AddPlayerForm from "./screens/AddPlayerForm";
 import AddEventForm from "./screens/AddEventForm";
-import Events from "./screens/Events";
+import Events from "./components/Events";
 import Icon from "react-native-vector-icons/Ionicons";
+
 
 const BottomTabs = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -61,12 +62,13 @@ const PlayersStack = ({ navigation }) => (
           backgroundColor: GlobalStyles.colors.darkblue,
         },
         headerTintColor: GlobalStyles.colors.orange,
+        headerTitleAlign: "center",
       }}
     />
   </Stack.Navigator>
 );
 
-const EventsStack = ({navigation}) => (
+const EventsStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="EventsStackScreen"
@@ -97,6 +99,7 @@ const EventsStack = ({navigation}) => (
           backgroundColor: GlobalStyles.colors.darkblue,
         },
         headerTintColor: GlobalStyles.colors.orange,
+        headerTitleAlign: "center",
       }}
     />
   </Stack.Navigator>

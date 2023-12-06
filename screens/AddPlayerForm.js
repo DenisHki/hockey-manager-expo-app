@@ -1,32 +1,35 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { addPlayer } from "../services/firebaseService";
 
-const AddPlayerForm = ({ onAddPlayer }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [number, setNumber] = useState("");
-  const [goals, setGoals] = useState("");
-  const [assists, setAssists] = useState("");
-  const [points, setPoints] = useState("");
+const AddPlayerForm = () => {
+  const [playerData, setPlayerData] = useState({
+    firstName: "",
+    lastName: "",
+    number: "",
+    goals: "",
+    assists: "",
+    points: "",
+  });
 
-  const handleAddPlayer = () => {
-    const newPlayer = {
-      firstName,
-      lastName,
-      number,
-      goals,
-      assists,
-      points,
-    };
+  const handleInputChange = (field, value) => {
+    setPlayerData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
 
-    onAddPlayer(newPlayer);
+  const handleAddPlayer = async () => {
+    await addPlayer(playerData);
     // Clear the input fields after adding a player
-    setFirstName("");
-    setLastName("");
-    setNumber("");
-    setGoals("");
-    setAssists("");
-    setPoints("");
+    setPlayerData({
+      firstName: "",
+      lastName: "",
+      number: "",
+      goals: "",
+      assists: "",
+      points: "",
+    });
   };
 
   return (
@@ -35,41 +38,41 @@ const AddPlayerForm = ({ onAddPlayer }) => {
       <TextInput
         style={styles.input}
         placeholder="First Name"
-        value={firstName}
-        onChangeText={(text) => setFirstName(text)}
+        value={playerData.firstName}
+        onChangeText={(text) => handleInputChange("firstName", text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Last Name"
-        value={lastName}
-        onChangeText={(text) => setLastName(text)}
+        value={playerData.lastName}
+        onChangeText={(text) => handleInputChange("lastName", text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Number"
-        value={number}
-        onChangeText={(text) => setNumber(text)}
+        value={playerData.number}
+        onChangeText={(text) => handleInputChange("number", text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
         placeholder="Goals"
-        value={goals}
-        onChangeText={(text) => setGoals(text)}
+        value={playerData.goals}
+        onChangeText={(text) => handleInputChange("goals", text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
         placeholder="Assists"
-        value={assists}
-        onChangeText={(text) => setAssists(text)}
+        value={playerData.assists}
+        onChangeText={(text) => handleInputChange("assists", text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
         placeholder="Points"
-        value={points}
-        onChangeText={(text) => setPoints(text)}
+        value={playerData.points}
+        onChangeText={(text) => handleInputChange("points", text)}
         keyboardType="numeric"
       />
       <Button title="Add Player" onPress={handleAddPlayer} />
