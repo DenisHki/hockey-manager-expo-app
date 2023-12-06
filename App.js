@@ -3,14 +3,16 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GlobalStyles } from "./constants/styles";
+import PlayerDetail from "./components/PlayerDetail";
+import EditPlayerForm from "./screens/EditPlayerForm";
 
+import { StatusBar } from "expo-status-bar";
 import MainScreen from "./screens/MainScreen";
 import Players from "./components/Players";
 import AddPlayerForm from "./screens/AddPlayerForm";
 import AddEventForm from "./screens/AddEventForm";
 import Events from "./components/Events";
 import Icon from "react-native-vector-icons/Ionicons";
-
 
 const BottomTabs = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -51,6 +53,30 @@ const PlayersStack = ({ navigation }) => (
             onPress={() => navigation.navigate("AddPlayerForm")}
           />
         ),
+      }}
+    />
+    <Stack.Screen
+      name="PlayerDetail"
+      component={PlayerDetail}
+      options={{
+        title: "Player Detail",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
+        headerTitleAlign: "center",
+      }}
+    />
+    <Stack.Screen
+      name="EditPlayerForm"
+      component={EditPlayerForm}
+      options={{
+        title: "Edit Player",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
+        headerTitleAlign: "center",
       }}
     />
     <Stack.Screen
@@ -108,6 +134,7 @@ const EventsStack = ({ navigation }) => (
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar style="light" />
       <BottomTabs.Navigator
         initialRouteName="MainScreen"
         activeColor={GlobalStyles.colors.orange}

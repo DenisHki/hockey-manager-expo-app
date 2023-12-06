@@ -1,11 +1,19 @@
 // Players.js
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableHighlight,
+} from "react-native";
 import { fetchPlayers } from "../services/firebaseService";
 import { GlobalStyles } from "../constants/styles";
+import { useNavigation } from "@react-navigation/native";
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchAndSetPlayers = async () => {
@@ -16,19 +24,27 @@ const Players = () => {
     fetchAndSetPlayers();
   }, [players]);
 
+  const handlePlayerClick = (player) => {
+    navigation.navigate("PlayerDetail", { player });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Players Screen</Text>
       <FlatList
         data={players}
-        keyExtractor={(item) => item.id || item.firstName + item.lastName}
+        keyExtractor={(item, index) => `${item.id || index}`}
         renderItem={({ item }) => (
-          <View style={styles.playerItem}>
-            <View style={styles.playerSquare}>
-              <Text style={styles.playerName}>{`${item.firstName} ${item.lastName}`}</Text>
-              {/* Add more player details as needed */}
+          <TouchableHighlight
+            style={styles.playerSquare}
+            onPress={() => handlePlayerClick(item)}
+          >
+            <View style={styles.playerNameContainer}>
+              <Text
+                style={styles.playerName}
+              >{`${item.firstName} ${item.lastName}`}</Text>
             </View>
-          </View>
+          </TouchableHighlight>
         )}
       />
     </View>
@@ -44,15 +60,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 16,
   },
-  playerItem: {
-    marginBottom: 16,
-  },
   playerSquare: {
     backgroundColor: GlobalStyles.colors.lightblue,
     padding: 16,
     borderRadius: 8,
-    alignItems: "center", 
-    justifyContent: "center", 
+    marginBottom: 16,
+  },
+  playerNameContainer: {
+    alignItems: "center", // Center the text horizontally
   },
   playerName: {
     fontSize: 18,

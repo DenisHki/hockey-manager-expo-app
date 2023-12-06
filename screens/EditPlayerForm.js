@@ -1,9 +1,9 @@
-// AddPlayerForm.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-import { addPlayer } from "../services/firebaseService";
+import { updatePlayer, fetchPlayerById } from "../services/firebaseService";
 
-const AddPlayerForm = () => {
+const EditPlayerForm = ({ route, navigation }) => {
+  const { playerId } = route.params;
   const [playerData, setPlayerData] = useState({
     firstName: "",
     lastName: "",
@@ -13,6 +13,15 @@ const AddPlayerForm = () => {
     points: "",
   });
 
+  useEffect(() => {
+    const fetchPlayerData = async () => {
+      const player = await fetchPlayerById(playerId);
+      setPlayerData(player);
+    };
+
+    fetchPlayerData();
+  }, [playerId]);
+
   const handleInputChange = (field, value) => {
     setPlayerData((prevData) => ({
       ...prevData,
@@ -20,22 +29,20 @@ const AddPlayerForm = () => {
     }));
   };
 
-  const handleAddPlayer = async () => {
-    await addPlayer(playerData);
-    // Clear the input fields after adding a player
-    setPlayerData({
-      firstName: "",
-      lastName: "",
-      number: "",
-      goals: "",
-      assists: "",
-      points: "",
-    });
+  const handleUpdatePlayer = async () => {
+    try {
+      await updatePlayer(playerId, playerData);
+      setPlayerData((prevData) => ({ ...prevData, ...playerData }));
+      console.log(`Player with ID ${playerId} updated successfully.`);
+      navigation.goBack();
+    } catch (error) {
+      console.error("Error updating player:", error);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add Player Form</Text>
+      <Text style={styles.title}>Edit Player Form</Text>
       <TextInput
         style={styles.input}
         placeholder="First Name"
@@ -76,7 +83,7 @@ const AddPlayerForm = () => {
         onChangeText={(text) => handleInputChange("points", text)}
         keyboardType="numeric"
       />
-      <Button title="Add Player" onPress={handleAddPlayer} />
+      <Button title="Update Player" onPress={handleUpdatePlayer} />
     </View>
   );
 };
@@ -99,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddPlayerForm;
+export default EditPlayerForm;
