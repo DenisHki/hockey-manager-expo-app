@@ -1,11 +1,13 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GlobalStyles } from "./constants/styles";
 
 import MainScreen from "./screens/MainScreen";
 import Players from "./screens/Players";
+import AddPlayerForm from "./screens/AddPlayerForm";
+import AddEventForm from "./screens/AddEventForm";
 import Events from "./screens/Events";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -28,7 +30,7 @@ const MainStack = () => (
   </Stack.Navigator>
 );
 
-const PlayersStack = () => (
+const PlayersStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="PlayersStackScreen"
@@ -39,18 +41,58 @@ const PlayersStack = () => (
           backgroundColor: GlobalStyles.colors.darkblue,
         },
         headerTintColor: GlobalStyles.colors.orange,
+        headerRight: () => (
+          <Icon
+            name="add"
+            color={GlobalStyles.colors.orange}
+            size={26}
+            style={{ marginRight: 16 }}
+            onPress={() => navigation.navigate("AddPlayerForm")}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="AddPlayerForm"
+      component={AddPlayerForm}
+      options={{
+        title: "Add Player",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
       }}
     />
   </Stack.Navigator>
 );
 
-const EventsStack = () => (
+const EventsStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
       name="EventsStackScreen"
       component={Events}
       options={{
         title: "Events",
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.darkblue,
+        },
+        headerTintColor: GlobalStyles.colors.orange,
+        headerRight: () => (
+          <Icon
+            name="add"
+            color={GlobalStyles.colors.orange}
+            size={26}
+            style={{ marginRight: 16 }}
+            onPress={() => navigation.navigate("AddEventForm")}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="AddEventForm"
+      component={AddEventForm}
+      options={{
+        title: "Add Event",
         headerStyle: {
           backgroundColor: GlobalStyles.colors.darkblue,
         },
