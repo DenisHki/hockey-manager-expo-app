@@ -1,6 +1,5 @@
-// PlayerDetail.js
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import { deletePlayer } from "../services/firebaseService";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -11,9 +10,24 @@ const PlayerDetail = ({ route, navigation }) => {
   const [player, setPlayer] = useState(route.params.player);
 
   const handleDeletePlayer = async () => {
-    console.log(`Deleting player with ID: ${player.id}`);
-    await deletePlayer(player.id);
-    navigation.goBack(); // Go back to the previous screen after deletion
+    Alert.alert(
+      "Confirm Deletion",
+      `Are you sure you want to delete ${player.firstName} ${player.lastName}?`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            console.log(`Deleting player with ID: ${player.id}`);
+            await deletePlayer(player.id);
+            navigation.goBack(); // Go back to the previous screen after deletion
+          },
+        },
+      ]
+    );
   };
 
   useFocusEffect(
@@ -21,7 +35,7 @@ const PlayerDetail = ({ route, navigation }) => {
       // Fetch player data or update local state when the screen is focused
       const fetchData = async () => {
         const updatedPlayer = await fetchPlayerById(player.id);
-        setPlayer(updatedPlayer); // Update the player state
+        setPlayer(updatedPlayer);
       };
       fetchData();
     }, [player.id])
@@ -33,29 +47,20 @@ const PlayerDetail = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.playerSquare}>
+      <View style={styles.detailContainer}>
+        <Text style={styles.detailLabel}>{`${player.firstName} ${player.lastName} #${player.number}`}</Text>
+      </View>
+      <View style={styles.playerSquare}>      
         <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>First Name:</Text>
-          <Text style={styles.detailText}>{player.firstName}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Last Name:</Text>
-          <Text style={styles.detailText}>{player.lastName}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Number:</Text>
-          <Text style={styles.detailText}>{player.number}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Goals:</Text>
+          <Text style={styles.detailLabel}>Goals:     </Text>
           <Text style={styles.detailText}>{player.goals}</Text>
         </View>
         <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Assists:</Text>
+          <Text style={styles.detailLabel}>Assists:  </Text>
           <Text style={styles.detailText}>{player.assists}</Text>
         </View>
         <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Points:</Text>
+          <Text style={styles.detailLabel}>Points:   </Text>
           <Text style={styles.detailText}>{player.points}</Text>
         </View>
       </View>
@@ -85,6 +90,7 @@ const PlayerDetail = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center", 
     padding: 16,
   },
   playerSquare: {
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center", // Center horizontally
     marginBottom: 12,
   },
   detailLabel: {

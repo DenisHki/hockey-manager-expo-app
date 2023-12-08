@@ -132,7 +132,7 @@ const EventsStack = ({ navigation }) => (
 );
 
 export default function App() {
-  return (
+    return (
     <NavigationContainer>
       <StatusBar style="light" />
       <BottomTabs.Navigator
@@ -153,7 +153,7 @@ export default function App() {
           }}
         />
         <BottomTabs.Screen
-          name="Rooster"
+          name="Roster"
           component={PlayersStack}
           options={{
             tabBarIcon: ({ color }) => (

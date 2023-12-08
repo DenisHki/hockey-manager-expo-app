@@ -1,4 +1,3 @@
-// Players.js
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -54,6 +53,7 @@ const Players = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    marginBottom: 32,
   },
   title: {
     fontSize: 20,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   playerNameContainer: {
-    alignItems: "center", // Center the text horizontally
+    alignItems: "center", 
   },
   playerName: {
     fontSize: 18,

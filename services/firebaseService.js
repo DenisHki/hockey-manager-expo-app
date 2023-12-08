@@ -1,4 +1,3 @@
-// firebaseService.js
 import { getDatabase, ref, push, set, get, remove } from "firebase/database";
 import firebaseApp from "../util/firebase";
 
@@ -21,22 +20,42 @@ export const fetchPlayers = async () => {
   }
 };
 
+// get player by ID
+export const fetchPlayerById = async (playerId) => {
+  const playerSnapshot = await get(
+    ref(getDatabase(firebaseApp), `players/${playerId}`)
+  );
+  const player = playerSnapshot.val();
+  return player ? { id: playerId, ...player } : null;
+};
+
+export const updatePlayer = async (playerId, playerData) => {
+  try {
+    const playerRef = ref(getDatabase(firebaseApp), `players/${playerId}`);
+    await set(playerRef, playerData);
+    //console.log(`Player with ID ${playerId} updated successfully.`);
+  } catch (error) {
+    //console.error("Error updating player:", error);
+  }
+};
+
 // add new player
 export const addPlayer = async (playerData) => {
   const newPlayerRef = push(playersRef);
   await set(newPlayerRef, playerData);
   return newPlayerRef.key;
+ 
 };
 
 // delete player
 export const deletePlayer = async (playerId) => {
   try {
     const playerRef = ref(getDatabase(firebaseApp), `players/${playerId}`);
-    console.log("Player reference:", playerRef.toString());
+    //console.log("Player reference:", playerRef.toString());
     await remove(playerRef);
-    console.log(`Player with ID ${playerId} deleted successfully.`);
+    //console.log(`Player with ID ${playerId} deleted successfully.`);
   } catch (error) {
-    console.error("Error deleting player:", error);
+    //console.error("Error deleting player:", error);
   }
 };
 
@@ -52,23 +71,4 @@ export const addEvent = async (eventData) => {
   const newEventRef = push(eventsRef);
   await set(newEventRef, eventData);
   return newEventRef.key;
-};
-
-// get player by ID
-export const fetchPlayerById = async (playerId) => {
-  const playerSnapshot = await get(
-    ref(getDatabase(firebaseApp), `players/${playerId}`)
-  );
-  const player = playerSnapshot.val();
-  return player ? { id: playerId, ...player } : null;
-};
-
-export const updatePlayer = async (playerId, playerData) => {
-  try {
-    const playerRef = ref(getDatabase(firebaseApp), `players/${playerId}`);
-    await set(playerRef, playerData);
-    console.log(`Player with ID ${playerId} updated successfully.`);
-  } catch (error) {
-    console.error("Error updating player:", error);
-  }
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import { updatePlayer, fetchPlayerById } from "../services/firebaseService";
 
 const EditPlayerForm = ({ route, navigation }) => {
@@ -33,10 +33,12 @@ const EditPlayerForm = ({ route, navigation }) => {
     try {
       await updatePlayer(playerId, playerData);
       setPlayerData((prevData) => ({ ...prevData, ...playerData }));
-      console.log(`Player with ID ${playerId} updated successfully.`);
+      //console.log(`Player with ID ${playerId} updated successfully.`);
+      Alert.alert("Success", "Player Updated Successfully");
       navigation.goBack();
     } catch (error) {
-      console.error("Error updating player:", error);
+      //console.error("Error updating player:", error);
+      Alert.alert("Error", "Unable to update player. Please try again later.");
     }
   };
 
