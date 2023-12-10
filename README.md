@@ -13,12 +13,6 @@ This React Native application serves as a comprehensive platform for managing ho
 
 ## Screenshots
 
-<p align="center">
-  <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/home.png" alt="Main Screen" width="300" style="margin-right: 20px">
-  <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/players.png" alt="Players Screen" width="300" style="margin-right: 20px">
-  <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/player_details.png" alt="Player Details Screen" width="300">
-</p>
-
 <p align="center" style="margin-bottom: 20px;">
   <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/home.png" alt="Main Screen" width="300" style="margin-right: 20px">
   <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/players.png" alt="Players Screen" width="300" style="margin-right: 20px">
@@ -30,7 +24,6 @@ This React Native application serves as a comprehensive platform for managing ho
   <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/event_details.png" alt="Event Details Screen" width="300" style="margin-right: 20px">
   <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/add_player.png" alt="Add Player Screen" width="300">
 </p>
-
 
 
 ## Getting Started
