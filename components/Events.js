@@ -1,11 +1,12 @@
-// Events.js
-import React, {useEffect} from "react";
-import { View, Text, FlatList, StyleSheet} from "react-native";
-import { fetchEvents } from "../services/firebaseService";
+import React, { useEffect, useState } from "react";
+import { View, Text, FlatList, StyleSheet, TouchableHighlight } from "react-native";
+import { fetchEvents } from "../services/firebaseService"; 
 import { GlobalStyles } from "../constants/styles";
+import { useNavigation } from "@react-navigation/native";
 
 const Events = () => {
-  const [events, setEvents] = React.useState([]);
+  const [events, setEvents] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchAndSetEvents = async () => {
@@ -16,6 +17,10 @@ const Events = () => {
     fetchAndSetEvents();
   }, [events]);
 
+  const handleEventClick = (event) => {
+    navigation.navigate("EventDetail", { event }); 
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Events Screen</Text>
@@ -23,10 +28,18 @@ const Events = () => {
         data={events}
         keyExtractor={(item, index) => `${item.id || index}`}
         renderItem={({ item }) => (
-            <View style={styles.eventSquare}>
+          <TouchableHighlight
+            style={styles.eventSquare}
+            onPress={() => handleEventClick(item)}
+          >
+            <View style={styles.eventContainer}>
               <Text style={styles.eventTitle}>{item.title}</Text>
-              <Text style={styles.eventDate}>{`${item.date} ${item.time}`}</Text>
+              <Text style={styles.eventTitle}>{item.category}</Text>
+              <Text style={styles.eventItem}>Date: {item.date}</Text>
+              <Text style={styles.eventItem}>Time: {item.time}</Text>
+              <Text style={styles.eventItem}>Location: {item.location}</Text>
             </View>
+          </TouchableHighlight>
         )}
       />
     </View>
@@ -36,6 +49,7 @@ const Events = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    marginBottom: 32,
   },
   title: {
     fontSize: 20,
@@ -46,17 +60,17 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.lightblue,
     padding: 16,
     borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
     marginBottom: 16,
   },
-  eventTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
+  eventContainer: {
+    alignItems: "center",
   },
-  eventDate: {
-    fontSize: 16,
+  eventTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  eventItem: {
+    fontSize: 20,
   },
 });
 
