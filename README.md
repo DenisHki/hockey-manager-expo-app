@@ -1,7 +1,7 @@
 # hockey-manager-expo-app
-The Hockey Manager app with React Native EXPO
 
-Welcome to the Hockey App repository! This React Native application serves as a comprehensive platform for managing hockey team-related information, including player profiles, event schedules, and team details. The app is designed to provide users with easy access to player and event details, as well as the ability to add, edit, and delete information.
+Welcome to the Hockey App repository! 
+This React Native application serves as a comprehensive platform for managing hockey team-related information, including player profiles, event schedules, and team details. The app is designed to provide users with easy access to player and event details, as well as the ability to add, edit, and delete information.
 
 ## Features
 
@@ -35,7 +35,7 @@ To run this application locally on your machine, follow these steps:
 2. Navigate to the project directory using `cd hockey-app`.
 3. Install dependencies by running `npm install`.
 4. Create a Firebase project and update the Firebase configuration in `util/firebase.js` with your project details.
-5. Run the app using `npm start` or `expo start`.
+5. Run the app using `npx expo start`.
 
 Make sure you have Node.js, npm, and Expo CLI installed on your machine.
 
@@ -46,7 +46,8 @@ Make sure you have Node.js, npm, and Expo CLI installed on your machine.
 
 ## Contributing
 
-Contributions are welcome! If you find a bug or have a feature request, please open an issue. Feel free to fork the repository and submit a pull request for improvements.
+Contributions are welcome! If you find a bug or have a feature request, please open an issue. 
+Feel free to fork the repository and submit a pull request for improvements.
 
 ## License
 
@@ -54,5 +55,6 @@ This project is licensed under the MIT License - see the [LICENSE](/LICENSE) fil
 
 ## Acknowledgments
 
-Thank you for checking out the Hockey App! If you have any questions or feedback, feel free to reach out. 
+Thank you for checking out the Hockey App! 
+If you have any questions or feedback, feel free to reach out. 
 
