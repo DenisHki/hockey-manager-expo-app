@@ -29,13 +29,13 @@ export const fetchPlayerById = async (playerId) => {
   return player ? { id: playerId, ...player } : null;
 };
 
+// edit player by ID
 export const updatePlayer = async (playerId, playerData) => {
   try {
     const playerRef = ref(getDatabase(firebaseApp), `players/${playerId}`);
     await set(playerRef, playerData);
-    //console.log(`Player with ID ${playerId} updated successfully.`);
   } catch (error) {
-    //console.error("Error updating player:", error);
+    console.error("Error updating player:", error);
   }
 };
 
@@ -51,11 +51,10 @@ export const addPlayer = async (playerData) => {
 export const deletePlayer = async (playerId) => {
   try {
     const playerRef = ref(getDatabase(firebaseApp), `players/${playerId}`);
-    //console.log("Player reference:", playerRef.toString());
     await remove(playerRef);
     //console.log(`Player with ID ${playerId} deleted successfully.`);
   } catch (error) {
-    //console.error("Error deleting player:", error);
+    console.error("Error deleting player:", error);
   }
 };
 
@@ -63,12 +62,55 @@ export const deletePlayer = async (playerId) => {
 export const fetchEvents = async () => {
   const snapshot = await get(eventsRef);
   const events = snapshot.val();
-  return events ? Object.values(events) : [];
+
+  if (events) {
+    const eventsArray = Object.entries(events).map(([id, events]) => ({
+      id,
+      ...events,
+    }));
+    return eventsArray;
+  } else {
+    return [];
+  }
+};
+
+// get event by ID
+export const fetchEventById = async (eventId) => {
+  const eventSnapshot = await get(
+    ref(getDatabase(firebaseApp), `events/${eventId}`)
+  );
+  const event = eventSnapshot.val();
+  return event ? { id: eventId, ...event } : null;
 };
 
 // add new event
 export const addEvent = async (eventData) => {
-  const newEventRef = push(eventsRef);
-  await set(newEventRef, eventData);
-  return newEventRef.key;
+  try {
+    const newEventRef = push(eventsRef);
+    await set(newEventRef, eventData);
+    return newEventRef.key;
+  } catch (error) {
+    console.error("Error adding new event:", error);
+    return null;
+  }
+};
+
+// edit event by ID
+export const updateEvent = async (eventId, eventData) => {
+  try {
+    const eventRef = ref(getDatabase(firebaseApp), `events/${eventId}`);
+    await set(eventRef, eventData);
+  } catch (error) {
+    console.error("Error updating event:", error);
+  }
+};
+
+// delete event
+export const deleteEvent = async (eventId) => {
+  try {
+    const eventRef = ref(getDatabase(firebaseApp), `events/${eventId}`);
+    await remove(eventRef);
+  } catch (error) {
+    console.error("Error deleting event:", error);
+  }
 };
