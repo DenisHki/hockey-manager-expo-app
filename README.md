@@ -13,8 +13,8 @@ Welcome to the Hockey App repository! This React Native application serves as a 
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/screenshot1.png)
-*Add a description for each screenshot.*
+![Screenshot 1](https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/home.png)
+*Main Screen.*
 
 ![Screenshot 2](/screenshots/screenshot2.png)
 *Add a description for each screenshot.*
