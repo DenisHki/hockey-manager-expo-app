@@ -13,11 +13,11 @@ This React Native application serves as a comprehensive platform for managing ho
 
   ## Technologies Used
 
-- **React Native:** The framework for building the mobile app. React Native allows for cross-platform mobile app development using JavaScript and React. The codebase is structured with reusable components, providing a maintainable and efficient development experience.
+- **React Native:** The framework for building the mobile app. 
 
-- **Firebase:** Firebase is used for real-time database management and authentication. It provides a scalable and reliable backend for the app, enabling features like real-time updates and secure user authentication.
+- **Firebase:** Firebase is used for real-time database management and authentication. It provides a scalable and reliable backend for the app, enabling features like real-time updates.
 
-- **Expo:** Expo is leveraged for quick and efficient development, providing a set of tools and services to simplify the development process. Expo enables features like easy testing, deployment, and access to native functionality without the need for complex native setup.
+- **Expo:** Expo is leveraged for quick and efficient development, providing a set of tools and services to simplify the development process. 
 
 - **React Navigation:** Navigation is handled using the React Navigation library, which provides a customizable navigation solution for React Native apps. It enables smooth transitions between screens and a structured navigation flow. I used MaterialBottomTabNavigator and NativeStackNavigator.
  
@@ -58,11 +58,6 @@ To run this application locally on your machine, follow these steps:
 5. Run the app using `npx expo start`.
 
 Make sure you have Node.js, npm, and Expo CLI installed on your machine.
-
-## Technologies Used
-
-- **React Native:** The framework for building the mobile app.
-- **Firebase:** Used for real-time database management and authentication.
 
 ## Contributing
 
