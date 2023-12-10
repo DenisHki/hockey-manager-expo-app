@@ -7,6 +7,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { fetchPlayerById } from "../services/firebaseService";
 
 const PlayerDetail = ({ route, navigation }) => {
+  //console.log("Route params:", route.params);
   const [player, setPlayer] = useState(route.params.player);
 
   const handleDeletePlayer = async () => {
@@ -23,7 +24,7 @@ const PlayerDetail = ({ route, navigation }) => {
           onPress: async () => {
             console.log(`Deleting player with ID: ${player.id}`);
             await deletePlayer(player.id);
-            navigation.goBack(); // Go back to the previous screen after deletion
+            navigation.goBack(); 
           },
         },
       ]
@@ -52,7 +53,7 @@ const PlayerDetail = ({ route, navigation }) => {
       </View>
       <View style={styles.playerSquare}>      
         <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Goals:     </Text>
+          <Text style={styles.detailLabel}> Goals:     </Text>
           <Text style={styles.detailText}>{player.goals}</Text>
         </View>
         <View style={styles.detailContainer}>
@@ -60,7 +61,7 @@ const PlayerDetail = ({ route, navigation }) => {
           <Text style={styles.detailText}>{player.assists}</Text>
         </View>
         <View style={styles.detailContainer}>
-          <Text style={styles.detailLabel}>Points:   </Text>
+          <Text style={styles.detailLabel}> Points:   </Text>
           <Text style={styles.detailText}>{player.points}</Text>
         </View>
       </View>
@@ -72,14 +73,14 @@ const PlayerDetail = ({ route, navigation }) => {
           <MaterialCommunityIcons
             name="delete"
             size={60}
-            color={GlobalStyles.colors.darkred}
+            color={GlobalStyles.colors.orangered}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonEdit} onPress={handleEditPlayer}>
           <MaterialCommunityIcons
             name="pencil"
             size={60}
-            color={GlobalStyles.colors.darkyellow}
+            color={GlobalStyles.colors.orange}
           />
         </TouchableOpacity>
       </View>
