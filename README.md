@@ -12,14 +12,16 @@ Welcome to the Hockey App repository! This React Native application serves as a 
 - **User-Friendly Interface:** The app offers an intuitive and user-friendly interface, making it easy to navigate through different screens and perform desired actions.
 
 ## Screenshots
+
 <!-- Main Screen -->
 <img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/home.png" alt="Main Screen" width="300">
+<img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/players.png" alt="Main Screen" width="300">
+<img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/player_details.png" alt="Main Screen" width="300">
+<img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/events.png" alt="Main Screen" width="300">
+<img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/event_details.png" alt="Main Screen" width="300">
+<img src="https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/add_player.png" alt="Main Screen" width="300">
 
-![Screenshot 1](https://github.com/DenisHki/hockey-manager-expo-app/blob/master/images/home.png)
-*Main Screen.*
 
-![Screenshot 2](/screenshots/screenshot2.png)
-*Add a description for each screenshot.*
 
 ## Getting Started
 
