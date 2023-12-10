@@ -1,0 +1,50 @@
+# hockey-manager-expo-app
+The Hockey Manager app with React Native EXPO
+
+Welcome to the Hockey App repository! This React Native application serves as a comprehensive platform for managing hockey team-related information, including player profiles, event schedules, and team details. The app is designed to provide users with easy access to player and event details, as well as the ability to add, edit, and delete information.
+
+## Features
+
+- **Player Management:** View a list of players, access detailed player profiles, and perform actions such as adding, editing, and deleting players.
+
+- **Event Management:** Explore a schedule of events, including games, practices, and special occasions. Similar to player management, you can add, edit, and delete events.
+
+- **User-Friendly Interface:** The app offers an intuitive and user-friendly interface, making it easy to navigate through different screens and perform desired actions.
+
+## Screenshots
+
+![Screenshot 1](/screenshots/screenshot1.png)
+*Add a description for each screenshot.*
+
+![Screenshot 2](/screenshots/screenshot2.png)
+*Add a description for each screenshot.*
+
+## Getting Started
+
+To run this application locally on your machine, follow these steps:
+
+1. Clone this repository to your local machine using `git clone`.
+2. Navigate to the project directory using `cd hockey-app`.
+3. Install dependencies by running `npm install`.
+4. Create a Firebase project and update the Firebase configuration in `util/firebase.js` with your project details.
+5. Run the app using `npm start` or `expo start`.
+
+Make sure you have Node.js, npm, and Expo CLI installed on your machine.
+
+## Technologies Used
+
+- **React Native:** The framework for building the mobile app.
+- **Firebase:** Used for real-time database management and authentication.
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have a feature request, please open an issue. Feel free to fork the repository and submit a pull request for improvements.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
+
+## Acknowledgments
+
+Thank you for checking out the Hockey App! If you have any questions or feedback, feel free to reach out. 
+
