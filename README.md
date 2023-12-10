@@ -11,6 +11,24 @@ This React Native application serves as a comprehensive platform for managing ho
 
 - **User-Friendly Interface:** The app offers an intuitive and user-friendly interface, making it easy to navigate through different screens and perform desired actions.
 
+  ## Technologies Used
+
+- **React Native:** The framework for building the mobile app. React Native allows for cross-platform mobile app development using JavaScript and React. The codebase is structured with reusable components, providing a maintainable and efficient development experience.
+
+- **Firebase:** Firebase is used for real-time database management and authentication. It provides a scalable and reliable backend for the app, enabling features like real-time updates and secure user authentication.
+
+- **Expo:** Expo is leveraged for quick and efficient development, providing a set of tools and services to simplify the development process. Expo enables features like easy testing, deployment, and access to native functionality without the need for complex native setup.
+
+- **React Navigation:** Navigation is handled using the React Navigation library, which provides a customizable navigation solution for React Native apps. It enables smooth transitions between screens and a structured navigation flow. I used MaterialBottomTabNavigator and NativeStackNavigator.
+ 
+- **React Native Components:** Utilized various React Native components such as `View`, `Text`, `FlatList`, `TextInput`, `Button`, `TouchableOpacity`, `Alert` and more to build a responsive and interactive UI.
+
+- **MaterialCommunityIcons:** Integrated icons from the Material Community Icons library using the `MaterialCommunityIcons` component from the `@expo/vector-icons` package. This enhances the visual elements and user experience with recognizable icons for actions like deleting and editing events.
+
+- **StyleSheet:** Applied styles to components using the `StyleSheet.create` method, ensuring a consistent and visually appealing design throughout the app.
+
+- **GlobalStyles:** Defined a global styles object (`GlobalStyles`) to maintain consistency in colors throughout the app, promoting a cohesive design theme.
+
 ## Screenshots
 
 <p align="center" style="margin-bottom: 20px;">
