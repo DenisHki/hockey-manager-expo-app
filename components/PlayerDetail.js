@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    justifyContent: "center", // Center horizontally
+    justifyContent: "center", 
     marginBottom: 12,
   },
   detailLabel: {
